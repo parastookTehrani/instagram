@@ -6,8 +6,12 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 import instagram from "../../assets/insta logo.svg";
+import { useState } from "react";
 
 export function SignUp() {
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
   const schema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
     username: Yup.string().required("User Name is required"),
@@ -16,7 +20,9 @@ export function SignUp() {
       .required("Password is required"),
   });
 
-  const navigate = useNavigate();
+  const changeVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   const {
     register,
@@ -82,11 +88,12 @@ export function SignUp() {
 
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password")}
               className="w-full rounded-l border border-gray-300 bg-gray-50 px-4 py-3 pr-16 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
+            <button type="button" onClick={changeVisibility} className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none">{showPassword ? 'Hide' : 'Show'}</button>
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.password.message}
@@ -104,7 +111,8 @@ export function SignUp() {
           <p className="text-center text-sm text-gray-600">
             Already have an account?
             <span>
-              <Link to={'/'}
+              <Link
+                to={"/"}
                 className="font-medium text-blue-600 hover:text-blue-700"
               >
                 Login
