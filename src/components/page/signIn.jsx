@@ -20,14 +20,27 @@ export function SignIn() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (data) => {
-    const res = await axios.post(
-      "https://instagram-backend-ugd3.onrender.com/api/user/login",
-      {
-        username: data.username,
-        password: data.password,
-      }
-    );
+
+  const onSubmit =async(data) => {
+  try{
+     const res = await axios.post('https://instagram-backend-ugd3.onrender.com/api/user/login',{
+    "username": data.username,
+  "password": data.password
+   })
+   if(res.data){
+    const token = res.data.jwt;
+     localStorage.setItem("token", token)
+     alert("ورود موفقیت امیز بود")
+     console.log(token);
+     
+     
+   }
+  }
+  catch(err){console.log(err);
+  }
+
+  
+
   };
 
   return (
