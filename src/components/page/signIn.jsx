@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import instagram from "../../assets/insta logo.svg";
 import page from "../../assets/Group 91.svg";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -12,6 +12,7 @@ const schema = Yup.object().shape({
 });
 
 export function SignIn() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -32,7 +33,7 @@ export function SignIn() {
      localStorage.setItem("token", token)
      alert("ورود موفقیت امیز بود")
      console.log(token);
-     
+     navigate('/instagram')
      
    }
   }
