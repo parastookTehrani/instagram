@@ -33,15 +33,28 @@ export function SignIn() {
       if (res.data) {
         console.log(res.data);
 
-        const token = res.data.accessToken;
-        localStorage.setItem("token", token);
-        alert("ورود موفقیت امیز بود");
-        console.log(token);
-        navigate("/instagram");
-      }
-    } catch (err) {
-      console.log(err);
-    }
+
+  const onSubmit =async(data) => {
+  try{
+     const res = await axios.post('https://instagram-backend-ugd3.onrender.com/api/user/login',{
+    "username": data.username,
+  "password": data.password
+   })
+   if(res.data){
+    const token = res.data.accessToken;
+     localStorage.setItem("token", token)
+     alert("ورود موفقیت امیز بود")
+     console.log(token);
+     navigate('/instagram')
+     
+   }
+  }
+  catch(err){console.log(err);
+  }
+
+  
+
+
   };
 
   return (
