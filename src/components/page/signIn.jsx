@@ -1,10 +1,10 @@
-
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import instagram from "../../assets/insta logo.svg";
-import Axios from 'axios'
+import page from "../../assets/Group 91.svg";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -12,9 +12,14 @@ const schema = Yup.object().shape({
 });
 
 export function SignIn() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
+
 
   const onSubmit =async(data) => {
   try{
@@ -33,24 +38,47 @@ export function SignIn() {
   }
   catch(err){console.log(err);
   }
+
+  
+
   };
 
-
   return (
-    <main>
-      <div>
-        <img src={instagram} alt="Instagram Logo" />
+    <main  className="min-h-screen flex items-center justify-center bg-gray-50 p-6 gap-80">
+        <div>
+            <img src={page} alt="viwe of page" />
+        </div>
+      <div className="w-full max-w-sm rounded-2xl border border-gray-200 bg-white shadow p-8 ">
+        {" "}
+        <div className="flex justify-center mb-8">
+          <img src={instagram} alt="Instagram Logo" className="h-10" />
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" >
+          <input type="text" 
+          {...register("username")} 
+          placeholder="Username" 
+          className="w-full h-12 rounded-md border border-gray-300 bg-gray-50 px-4 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+          />
+          {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username.message}</p>}
+
+          <input
+            type="password"
+            {...register("password")}
+            placeholder="Password"
+            className="w-full h-12 rounded-md border border-gray-300 bg-gray-50 px-4 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition "
+          />
+          {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+
+          <button type="submit"
+          className="mt-2 w-full h-12 rounded-md bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold transition"
+          >
+            Log in
+            </button>
+          <p className="text-center text-sm text-gray-700 mt-[114px]">
+            Don’t have an account? <span className="font-medium text-blue-600"><Link to={'/SignUp'}>Sign up</Link> </span>
+          </p>
+        </form>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" {...register("username")} placeholder="Username" />
-        {errors.username && <p>{errors.username.message}</p>}
-
-        <input type="password" {...register("password")} placeholder="Password" />
-        {errors.password && <p>{errors.password.message}</p>}
-
-        <button type="submit">Log in</button>
-        <p>Don’t have an account? <span>Sign up</span></p>
-      </form>
     </main>
   );
 }
