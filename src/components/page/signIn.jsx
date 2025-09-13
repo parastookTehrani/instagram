@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import instagram from "../../assets/insta logo.svg";
 import page from "../../assets/Group 91.svg";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const schema = Yup.object().shape({
   username: Yup.string().required("Username is required"),
@@ -61,7 +62,7 @@ export function SignIn() {
             Log in
             </button>
           <p className="text-center text-sm text-gray-700 mt-[114px]">
-            Don’t have an account? <span className="font-medium text-blue-600"><a href="">Sign up</a> </span>
+            Don’t have an account? <span className="font-medium text-blue-600"><Link to={'/SignUp'}>Sign up</Link> </span>
           </p>
         </form>
       </div>
