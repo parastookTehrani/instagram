@@ -22,19 +22,7 @@ export function SignIn() {
   });
 
   const onSubmit = async (data) => {
-    try {
-      const res = await axios.post(
-        "https://instagram-backend-ugd3.onrender.com/api/user/login",
-        {
-          username: data.username,
-          password: data.password,
-        }
-      );
-      if (res.data) {
-        console.log(res.data);
 
-
-  const onSubmit =async(data) => {
   try{
      const res = await axios.post('https://instagram-backend-ugd3.onrender.com/api/user/login',{
     "username": data.username,
