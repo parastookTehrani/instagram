@@ -1,7 +1,9 @@
+import { InstaLink } from "../instlink";
+
 export function InstaHome (){
     return (
-        <>
-        <div>asdfgh</div>
-        </>
+        <div className="flex">
+        <InstaLink/>
+        </div>
     )
 }
