@@ -1,7 +1,10 @@
+
+import Post from '../Post'
 export function InstaHome (){
+
     return (
         <>
-        <div>asdfgh</div>
+       <Post></Post>
         </>
     )
 }

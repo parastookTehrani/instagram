@@ -29,7 +29,7 @@ export function SignIn() {
   "password": data.password
    })
    if(res.data){
-    const token = res.data.jwt;
+    const token = res.data.accessToken;
      localStorage.setItem("token", token)
      alert("ورود موفقیت امیز بود")
      console.log(token);
