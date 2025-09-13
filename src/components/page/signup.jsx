@@ -2,7 +2,9 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+
 import { Link, useNavigate } from "react-router-dom";
+
 import instagram from "../../assets/insta logo.svg";
 
 export function SignUp() {
@@ -55,7 +57,7 @@ export function SignUp() {
               type="email"
               placeholder="Email"
               {...register("email")}
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full rounded-l border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -69,7 +71,7 @@ export function SignUp() {
               type="text"
               placeholder="User Name"
               {...register("username")}
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full rounded-l border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
             {errors.username && (
               <p className="text-red-500 text-sm mt-1">
@@ -83,7 +85,7 @@ export function SignUp() {
               type="password"
               placeholder="Password"
               {...register("password")}
-              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 pr-16 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full rounded-l border border-gray-300 bg-gray-50 px-4 py-3 pr-16 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
@@ -94,7 +96,7 @@ export function SignUp() {
 
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-3 transition"
+            className="w-full rounded-l bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-3 my-6 transition"
           >
             Sign up
           </button>
