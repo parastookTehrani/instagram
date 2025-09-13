@@ -2,7 +2,9 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
+
 import instagram from "../../assets/insta logo.svg";
 
 export function SignUp() {
@@ -58,7 +60,9 @@ export function SignUp() {
               className="w-full rounded-l border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -100,12 +104,11 @@ export function SignUp() {
           <p className="text-center text-sm text-gray-600">
             Already have an account?
             <span>
-              <a
-                href="/login"
+              <Link to={'/'}
                 className="font-medium text-blue-600 hover:text-blue-700"
               >
                 Login
-              </a>
+              </Link>
             </span>
           </p>
         </form>
