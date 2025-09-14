@@ -5,9 +5,7 @@ import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
-
 import { Link, useNavigate } from "react-router-dom";
-
 
 export function InstaLink() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -19,7 +17,10 @@ export function InstaLink() {
   const [isContentEditing, setIsContentEditing] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-const navigate2=useNavigate()
+
+  const navigate = useNavigate();
+
+  // Search users
   useEffect(() => {
     if (!query) return setResults([]);
     const fetchData = async () => {
@@ -35,22 +36,36 @@ const navigate2=useNavigate()
     fetchData();
   }, [query]);
 
-
-  
-const navigate = useNavigate ;
-
-    const handelchange = () => { 
-      navigate ('/profile')
+  // Create post
+  const handleCreatePost = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("توکن پیدا نشد!");
+      return;
     }
 
-    const navigate3 = useNavigate()
+    try {
+      await axios.post(
+        "https://instagram-backend-ugd3.onrender.com/api/article",
+        { title, content },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-
-
-
+      setTitle("");
+      setContent("");
+      setIsCreateOpen(false);
+      alert("Post created successfully!");
+    } catch (err) {
+      console.error(err);
+      if (err.response) {
+        alert(`خطا از سرور: ${err.response.status} - ${err.response.data}`);
+      } else {
+        alert("Failed to create post!");
+      }
+    }
+  };
 
   return (
-
     <>
       <aside className="fixed h-screen w-1/6 bg-white p-6">
         <div className="mb-8">
@@ -59,7 +74,7 @@ const navigate = useNavigate ;
         <ul className="flex flex-col gap-6 text-gray-800 font-medium">
           <li className="flex items-center gap-3">
             <IoHomeSharp className="w-6 h-6" />
-            <button onClick={()=>{navigate2('/instagram')}}>Home</button>
+            <button>Home</button>
           </li>
           <li className="flex items-center gap-3">
             <CiSearch className="w-6 h-6" />
@@ -75,11 +90,11 @@ const navigate = useNavigate ;
               alt="Profile icon"
               className="w-6 h-6 rounded-full"
             />
-            <button onClick={() => {navigate3('/profile')}} >Profile</button>
+            <button onClick={() => navigate("/profile")}>Profile</button>
           </li>
         </ul>
-=
 
+        {/* Search Box */}
         {isSearchOpen && (
           <div className="absolute top-5 left-40 w-80 bg-white shadow-lg rounded-xl p-4">
             <h3 className="text-lg font-semibold mb-3">Search</h3>
@@ -114,7 +129,7 @@ const navigate = useNavigate ;
         )}
       </aside>
 
-
+      {/* Create Post Modal */}
       {isCreateOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div className="bg-white w-[400px] rounded-lg shadow-lg p-6 pointer-events-auto">
@@ -122,7 +137,7 @@ const navigate = useNavigate ;
               Create new post
             </h2>
 
-
+            {/* Title Input */}
             <div className="mb-3">
               {isTitleEditing ? (
                 <input
@@ -143,6 +158,7 @@ const navigate = useNavigate ;
               )}
             </div>
 
+            {/* Content Input */}
             <div className="mb-3">
               {isContentEditing ? (
                 <textarea
@@ -158,23 +174,21 @@ const navigate = useNavigate ;
                   className="text-gray-600 cursor-text border rounded-lg px-3 py-2"
                   onClick={() => setIsContentEditing(true)}
                 >
-
                   {content || "Content"}
                 </p>
               )}
             </div>
 
-            <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-              Select from computer
-            </button>
-
+            {/* Submit Button */}
             <div className="mt-4">
-              <button className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600">
+              <button
+                onClick={handleCreatePost}
+                className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600"
+              >
                 Create Post
               </button>
             </div>
           </div>
-
         </div>
       )}
     </>
