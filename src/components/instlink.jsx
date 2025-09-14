@@ -5,7 +5,9 @@ import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
+
 import { Link, useNavigate } from "react-router-dom";
+
 
 export function InstaLink() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -32,6 +34,19 @@ const navigate2=useNavigate()
     };
     fetchData();
   }, [query]);
+
+
+  
+const navigate = useNavigate ;
+
+    const handelchange = () => { 
+      navigate ('/profile')
+    }
+
+
+
+
+
 
   return (
 
@@ -98,12 +113,14 @@ const navigate2=useNavigate()
         )}
       </aside>
 
+
       {isCreateOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div className="bg-white w-[400px] rounded-lg shadow-lg p-6 pointer-events-auto">
             <h2 className="text-lg font-semibold text-center mb-4">
               Create new post
             </h2>
+
 
             <div className="mb-3">
               {isTitleEditing ? (
