@@ -79,7 +79,7 @@ export function InstaLink() {
                   className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md cursor-pointer"
                 >
                   <img
-                    src={user.profilePicture}
+                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM19VBNETVqcLJcoO6pq6cSz6JHrCzJfkb3g&s'
                     alt={user.username}
                     className="w-8 h-8 rounded-full"
                   />
