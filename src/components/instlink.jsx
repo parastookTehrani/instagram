@@ -5,7 +5,7 @@ import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function InstaLink() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -18,6 +18,9 @@ export function InstaLink() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const navigate = useNavigate();
+
+  // Search users
   useEffect(() => {
     if (!query) return setResults([]);
     const fetchData = async () => {
@@ -33,6 +36,7 @@ export function InstaLink() {
     fetchData();
   }, [query]);
 
+  // Create post
   const handleCreatePost = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -62,7 +66,6 @@ export function InstaLink() {
   };
 
   return (
-
     <>
       <aside className="fixed h-screen w-1/6 bg-white p-6">
         <div className="mb-8">
@@ -87,11 +90,11 @@ export function InstaLink() {
               alt="Profile icon"
               className="w-6 h-6 rounded-full"
             />
-            <button>Profile</button>
+            <button onClick={() => navigate("/profile")}>Profile</button>
           </li>
         </ul>
-=
 
+        {/* Search Box */}
         {isSearchOpen && (
           <div className="absolute top-5 left-40 w-80 bg-white shadow-lg rounded-xl p-4">
             <h3 className="text-lg font-semibold mb-3">Search</h3>
@@ -126,6 +129,7 @@ export function InstaLink() {
         )}
       </aside>
 
+      {/* Create Post Modal */}
       {isCreateOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div className="bg-white w-[400px] rounded-lg shadow-lg p-6 pointer-events-auto">
@@ -133,6 +137,7 @@ export function InstaLink() {
               Create new post
             </h2>
 
+            {/* Title Input */}
             <div className="mb-3">
               {isTitleEditing ? (
                 <input
@@ -153,6 +158,7 @@ export function InstaLink() {
               )}
             </div>
 
+            {/* Content Input */}
             <div className="mb-3">
               {isContentEditing ? (
                 <textarea
@@ -168,16 +174,12 @@ export function InstaLink() {
                   className="text-gray-600 cursor-text border rounded-lg px-3 py-2"
                   onClick={() => setIsContentEditing(true)}
                 >
-
                   {content || "Content"}
                 </p>
               )}
             </div>
 
-            {/* <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-              Select from computer
-            </button> */}
-
+            {/* Submit Button */}
             <div className="mt-4">
               <button
                 onClick={handleCreatePost}
@@ -187,7 +189,6 @@ export function InstaLink() {
               </button>
             </div>
           </div>
-
         </div>
       )}
     </>

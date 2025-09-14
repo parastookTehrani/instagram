@@ -4,7 +4,10 @@ import {BrowserRouter as Router, Routes , Route } from 'react-router-dom'
 import { SignIn } from './components/page/signIn';
 import { SignUp } from './components/page/signup';
 import { InstaHome } from './components/page/instaHome';
+
 import Deatilsuser from './deatilsuser';
+import Profile from './components/profile';
+
 
 
 function App() {
@@ -19,7 +22,9 @@ function App() {
   <Route path='/SignUp' element ={<SignUp/>} ></Route>
   <Route path='/instagram' element={<InstaHome />} ></Route>
   <Route path='/deatilsuser/:username' element={<Deatilsuser />} ></Route>
- 
+  <Route path='/profile' element={<Profile />} ></Route>
+    
+
 </Routes>
 
   </Router>

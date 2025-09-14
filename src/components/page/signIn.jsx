@@ -22,27 +22,28 @@ export function SignIn() {
   });
 
   const onSubmit = async (data) => {
-
-  try{
-     const res = await axios.post('https://instagram-backend-ugd3.onrender.com/api/user/login',{
-    "username": data.username,
-  "password": data.password
-   })
-   if(res.data){
-    const token = res.data.accessToken;
-     localStorage.setItem("token", token)
-     alert("ورود موفقیت امیز بود")
-     console.log(token);
-     navigate('/instagram')
-     
-   }
-  }
-  catch(err){console.log(err);
-  }
-
-  
-
-
+    try {
+      const res = await axios.post(
+        "https://instagram-backend-ugd3.onrender.com/api/user/login",
+        {
+          username: data.username,
+          password: data.password,
+        }
+      );
+      console.log(res);
+      
+      if (res.data) {
+        const token = res.data.accessToken;
+        const id = res.data.data._id
+        localStorage.setItem("token", token);
+        localStorage.setItem("id", id)
+        alert("ورود موفقیت امیز بود");
+        console.log(token);
+        navigate("/instagram");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
