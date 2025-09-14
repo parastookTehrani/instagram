@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import instagram from "../assets/insta logo.svg";
-import home from "../assets/Frame.svg";
-import search from "../assets/Frame (1).svg";
-import createIcon from "../assets/Frame (2).svg";
+import { IoHomeSharp } from "react-icons/io5";
+import { CiSearch } from "react-icons/ci";
+import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
 
 export function InstaLink() {
@@ -35,20 +35,27 @@ export function InstaLink() {
       </div>
       <ul className="flex flex-col gap-6 text-gray-800 font-medium">
         <li className="flex items-center gap-3">
-          <img src={home} alt="Home" className="w-6 h-6" />
+
+          <IoHomeSharp className="w-6 h-6" />
           <button>Home</button>
         </li>
         <li className="flex items-center gap-3">
-          <img src={search} alt="Search" className="w-6 h-6" />
+          <CiSearch className="w-6 h-6" />
           <button onClick={() => setIsSearchOpen(!isSearchOpen)}>Search</button>
         </li>
         <li className="flex items-center gap-3">
-          <img src={createIcon} alt="Create" className="w-6 h-6" />
+          <FiPlusSquare className="w-6 h-6" />
           <button>Create</button>
         </li>
         <li className="flex items-center gap-3">
-          <img src={profile} alt="Profile" className="w-6 h-6 rounded-full" />
+          <img
+            src={profile}
+            alt="Profile icon"
+            className="w-6 h-6 rounded-full"
+          />
+
           <button>Profile</button>
+
         </li>
       </ul>
 
