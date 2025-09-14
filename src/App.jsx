@@ -6,6 +6,7 @@ import { SignUp } from './components/page/signup';
 import { InstaHome } from './components/page/instaHome';
 
 import Deatilsuser from './deatilsuser';
+import Profile from './components/profile';
 
 
 
@@ -20,12 +21,9 @@ function App() {
   <Route path='/' element ={<SignIn />}></Route>
   <Route path='/SignUp' element ={<SignUp/>} ></Route>
   <Route path='/instagram' element={<InstaHome />} ></Route>
-
-  <Route path='/profile' element={<Profile/>} ></Route>
-  
-
   <Route path='/deatilsuser/:username' element={<Deatilsuser />} ></Route>
- 
+  <Route path='/profile' element={<Profile />} ></Route>
+    
 
 </Routes>
 

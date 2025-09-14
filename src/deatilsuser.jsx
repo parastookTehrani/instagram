@@ -85,18 +85,18 @@ export default function DetailsUser() {
         </div>
       </div>
       <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
-  <div className="grid grid-cols-3 gap-2">
-    {articles.map((item) => (
-      <div key={item._id} className="aspect-square overflow-hidden">
-        <img
-          src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_incoming&w=740&q=80"
-          alt={item.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform"
-        />
+        <div className="grid grid-cols-3 gap-2">
+          {articles.map((item) => (
+            <div key={item._id} className="aspect-square overflow-hidden">
+              <img
+                src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_incoming&w=740&q=80"
+                alt={item.title}
+                className="w-full h-full object-cover hover:scale-105 transition-transform"
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
     </>
   );
 }
