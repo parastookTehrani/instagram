@@ -174,9 +174,9 @@ export function InstaLink() {
               )}
             </div>
 
-            <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+            {/* <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
               Select from computer
-            </button>
+            </button> */}
 
             <div className="mt-4">
               <button
