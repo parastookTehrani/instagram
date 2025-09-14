@@ -29,7 +29,9 @@ export function InstaLink() {
   }, [query]);
 
   return (
-    <aside className="fixed h-screen w-1/6 bg-white p-6">
+
+    <aside className=" fixed h-screen bg-white p-6 ">
+
       <div className="mb-8">
         <img src={instagram} alt="Instagram" className="h-10" />
       </div>
