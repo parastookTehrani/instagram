@@ -58,7 +58,7 @@ export default function Profile() {
 
 
     </div>
-    <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
+    {/* <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
         <div className="grid grid-cols-3 gap-2">
           {articles.map((item) => (
             <div key={item._id} className="aspect-square overflow-hidden">
@@ -70,7 +70,7 @@ export default function Profile() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
