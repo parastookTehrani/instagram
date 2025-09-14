@@ -5,6 +5,7 @@ import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
+import { useNavigate } from "react-router-dom";
 
 export function InstaLink() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -27,6 +28,19 @@ export function InstaLink() {
     };
     fetchData();
   }, [query]);
+
+
+  
+const navigate = useNavigate ;
+
+    const handelchange = () => { 
+      navigate ('/profile')
+    }
+
+
+
+
+
 
   return (
     <aside className="fixed h-screen w-1/6 bg-white p-6">
@@ -54,7 +68,7 @@ export function InstaLink() {
             className="w-6 h-6 rounded-full"
           />
 
-          <button>Profile</button>
+          <button onClick={handelchange()} >Profile</button>
 
         </li>
       </ul>
