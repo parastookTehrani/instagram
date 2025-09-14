@@ -6,27 +6,29 @@ import { BsSave } from "react-icons/bs";
 
 export default function Post() {
   const [likes, setLikes] = useState(false);
+  const [comments, setComments] = useState({});
+  const [commentInput, setCommentInput] = useState({});
 
-  useEffect(() => {
-    const fechdata = async () => {
-      try {
-        const token = localStorage.getItem("token");
+  //   https: useEffect(() => {
+  //     const fechdata = async () => {
+  //       try {
+  //         const token = localStorage.getItem("token");
 
-        const res = await axios.get(
-          "https://instagram-backend-ugd3.onrender.com/api/article/timeline?page=1&limit=1",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        // console.log(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fechdata();
-  }, []);
+  //         const res = await axios.get(
+  //           "https://instagram-backend-ugd3.onrender.com/api/article/timeline?page=1&limit=1",
+  //           {
+  //             headers: {
+  //               Authorization: `Bearer ${token}`,
+  //             },
+  //           }
+  //         );
+  //         // console.log(res.data);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+  //     fechdata();
+  //   }, []);
 
   const Articles = [
     {
@@ -72,12 +74,57 @@ export default function Post() {
   //     }
   //   };
 
+  const fetchComments = async (postId) => {
+    try {
+      const token = localStorage.getItem("token");
+      
+      const res = await axios.get(
+        `https://instagram-backend-ugd3.onrender.com/api/comment/${postId}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setComments((prev) => ({ ...prev, [postId]: res.data }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleCommentChange = (postId, value) => {
+    setCommentInput((prev) => ({ ...prev, [postId]: value }));
+  };
+
+  const submitComment = async (postId) => {
+    const text = commentInput[postId];
+    if (!text || !text.trim()) return;
+
+    try {
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        "https://instagram-backend-ugd3.onrender.com/api/comment",
+        { postId, text },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setComments((prev) => ({
+        ...prev,
+        [postId]: prev[postId] ? [res.data, ...prev[postId]] : [res.data],
+      }));
+
+      setCommentInput((prev) => ({ ...prev, [postId]: "" }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const likeArticle = (id) => {
     setLikes((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
   };
+
+  useEffect(() => {
+    Articles.forEach((article) => fetchComments(article.id));
+  }, []);
 
   return (
     <div className="flex flex-col gap-2">
@@ -133,11 +180,36 @@ export default function Post() {
           </div>
 
           <div className="px-4 text-sm text-gray-500">
-            View all 13,384 comments
+            <button
+              className="text-blue-500 hover:underline"
+              onClick={() => fetchComments(item.id)}
+            >
+              View all comments
+            </button>
+            {comments[item.id] &&
+              comments[item.id].map((c, idx) => (
+                <div key={idx} className="px-4 text-sm">
+                  <span className="font-semibold mr-1">
+                    {c.user.username}
+                  </span>
+                  {c.text}
+                </div>
+              ))}
           </div>
 
           <div className="px-4 py-2 border-t text-sm text-gray-500">
-            Add a comment…
+            <textarea
+              className="w-full p-2 border rounded"
+              placeholder="Add a comment..."
+              value={commentInput[item.id] || ""}
+              onChange={(e) => handleCommentChange(item.id, e.target.value)}
+            />
+            <button
+              className="mt-2 p-2 bg-blue-500 text-white rounded"
+              onClick={() => submitComment(item.id)}
+            >
+              Post Comment
+            </button>
           </div>
         </div>
       ))}
