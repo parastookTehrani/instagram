@@ -34,6 +34,7 @@ const navigate2=useNavigate()
   }, [query]);
 
   return (
+
     <>
       <aside className="fixed h-screen w-1/6 bg-white p-6">
         <div className="mb-8">
@@ -61,6 +62,7 @@ const navigate2=useNavigate()
             <button>Profile</button>
           </li>
         </ul>
+=
 
         {isSearchOpen && (
           <div className="absolute top-5 left-40 w-80 bg-white shadow-lg rounded-xl p-4">
@@ -138,6 +140,7 @@ const navigate2=useNavigate()
                   className="text-gray-600 cursor-text border rounded-lg px-3 py-2"
                   onClick={() => setIsContentEditing(true)}
                 >
+
                   {content || "Content"}
                 </p>
               )}
@@ -153,6 +156,7 @@ const navigate2=useNavigate()
               </button>
             </div>
           </div>
+
         </div>
       )}
     </>
