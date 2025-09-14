@@ -62,6 +62,7 @@ export function InstaLink() {
   };
 
   return (
+
     <>
       <aside className="fixed h-screen w-1/6 bg-white p-6">
         <div className="mb-8">
@@ -89,6 +90,7 @@ export function InstaLink() {
             <button>Profile</button>
           </li>
         </ul>
+=
 
         {isSearchOpen && (
           <div className="absolute top-5 left-40 w-80 bg-white shadow-lg rounded-xl p-4">
@@ -166,6 +168,7 @@ export function InstaLink() {
                   className="text-gray-600 cursor-text border rounded-lg px-3 py-2"
                   onClick={() => setIsContentEditing(true)}
                 >
+
                   {content || "Content"}
                 </p>
               )}
@@ -184,6 +187,7 @@ export function InstaLink() {
               </button>
             </div>
           </div>
+
         </div>
       )}
     </>
