@@ -18,14 +18,14 @@ export default function Post() {
           const token = localStorage.getItem("token");
 
           const res = await axios.get(
-            "https://instagram-backend-ugd3.onrender.com/api/article/timeline?page=1&limit=1",
+            "https://instagram-backend-ugd3.onrender.com/api/article/timeline?",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }
           );
-          console.log(res.data);
+        //   console.log(res.data);
           setArticles(res.data.Articles)
         } catch (err) {
           console.log(err);
