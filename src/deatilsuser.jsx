@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { InstaLink } from './components/instlink';
 
 export default function DetailsUser() {
   const { username } = useParams();
@@ -29,6 +30,8 @@ export default function DetailsUser() {
   if (error) return <p className="text-center text-red-500 mt-8">{error}</p>;
 
   return (
+    <>
+    <InstaLink></InstaLink>
     <div className="max-w-md mx-auto mt-8 p-6 bg-white shadow-md rounded-lg">
       {/* بالای پروفایل */}
       <div className="flex items-center gap-6">
@@ -55,10 +58,11 @@ export default function DetailsUser() {
         </div>
       </div>
 
-      {/* توضیحات پروفایل */}
+   
       <div className="mt-4">
         <p className="text-gray-700">{userValue.description || "No description"}</p>
       </div>
     </div>
+    </>
   );
 }
