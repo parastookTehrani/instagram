@@ -5,6 +5,7 @@ import { IoHomeSharp } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { FiPlusSquare } from "react-icons/fi";
 import profile from "../assets/Frame (3).svg";
+import { Link } from 'react-router-dom';
 
 export function InstaLink() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -17,6 +18,7 @@ export function InstaLink() {
       try {
         const res = await axios.get(
           `https://instagram-backend-ugd3.onrender.com/api/user/searchUser?search=${query}`
+
         );
         console.log(res);
         
@@ -74,8 +76,8 @@ export function InstaLink() {
           {results.length > 0 ? (
             <ul className="space-y-2 text-sm">
               {results.map((user) => (
-                <li
-                  key={user._id}
+              <Link to={`/deatilsuser/${user.username}`}><li
+                  key={user._username}
                   className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md cursor-pointer"
                 >
                   <img
@@ -86,7 +88,7 @@ export function InstaLink() {
                   <div>
                     <p className="font-medium">{user.username}</p>
                   </div>
-                </li>
+                </li></Link>
               ))}
             </ul>
           ) : (
