@@ -5,16 +5,25 @@ import { InstaLink } from "./instlink";
 
 export default function Profile() {
   const [user, setUser] = useState({});
+  const [articles, setArticles] = useState([]);
   const BASE_URL = "https://instagram-backend-ugd3.onrender.com";
   const id = localStorage.getItem("id");
 
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!id) {
+        console.error("User id not found");
+        return;
+      }
       try {
+        
         const resposne = await axios.get(`${BASE_URL}/api/user/${id}`);
 
         setUser(resposne.data.user);
+         const articlesRes = await axios.get(`${BASE_URL}/api/article/${id}`);
+        setArticles(articlesRes.data.articles || []);
+        
       } catch (err) {
         console.error("Error fetching data:", err);
       }
@@ -58,7 +67,7 @@ export default function Profile() {
 
 
     </div>
-    {/* <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
+    <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
         <div className="grid grid-cols-3 gap-2">
           {articles.map((item) => (
             <div key={item._id} className="aspect-square overflow-hidden">
@@ -70,7 +79,7 @@ export default function Profile() {
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
