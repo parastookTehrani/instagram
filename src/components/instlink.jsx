@@ -43,6 +43,7 @@ const navigate = useNavigate ;
       navigate ('/profile')
     }
 
+    const navigate3 = useNavigate()
 
 
 
@@ -74,7 +75,7 @@ const navigate = useNavigate ;
               alt="Profile icon"
               className="w-6 h-6 rounded-full"
             />
-            <button>Profile</button>
+            <button onClick={() => {navigate3('/profile')}} >Profile</button>
           </li>
         </ul>
 =

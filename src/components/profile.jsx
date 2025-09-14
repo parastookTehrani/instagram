@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { InstaLink } from "./instlink";
 
 
 export default function Profile() {
@@ -7,20 +8,6 @@ export default function Profile() {
   const BASE_URL = "https://instagram-backend-ugd3.onrender.com";
   const id = localStorage.getItem("id");
 
-  //   const user = {
-  //     username: "upvox_",
-  //     posts: 11,
-  //     followers: followers.length,
-  //     following: followings.length,
-  //     bio: "Your favourite fun clips in your language 🌍",
-  //     website: "upvox.net",
-  //     postsGrid: [
-  //       "https://via.placeholder.com/300x300",
-  //       "https://via.placeholder.com/300x300",
-  //       "https://via.placeholder.com/300x300",
-  //       "https://via.placeholder.com/300x300",
-  //     ],
-  //   };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +26,8 @@ export default function Profile() {
   console.log(user);
 
   return (
+    <>
+    <InstaLink />
     <div className="py-8 px-5 flex flex-col gap-11 bg-white">
       <div className="flex items-center gap-25 py-3 px-15 ">
         <img src="https://i.pravatar.cc/150?img=12" alt="profile" className="rounded-full" />
@@ -69,5 +58,19 @@ export default function Profile() {
 
 
     </div>
+    <div className="w-full max-w-4xl mx-auto mt-8 p-6 border-b border-b-gray-300 bg-white">
+        <div className="grid grid-cols-3 gap-2">
+          {articles.map((item) => (
+            <div key={item._id} className="aspect-square overflow-hidden">
+              <img
+                src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_incoming&w=740&q=80"
+                alt={item.title}
+                className="w-full h-full object-cover hover:scale-105 transition-transform"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
